@@ -1,0 +1,77 @@
+//reverse the stack in main
+import java.util.Scanner;
+class Stacks1{
+    int top=-1;
+    final int CAPACITY;
+    int stack[];
+    Stacks1(int size){
+        top=-1;
+        CAPACITY=size;
+        stack=new int[CAPACITY];
+    }
+    public boolean isfull(){
+        if(top==CAPACITY-1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public boolean isempty(){
+        if(top==-1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public void push(int data){
+
+        if(isfull()){
+            System.out.println("Stack overflow");
+        }
+        else{
+                top++;
+                stack[top] = data;
+        }
+    }
+    public void pop(){
+        if(isempty()){
+            System.out.println("Stack is underflow");
+        }
+        else{
+            top--;
+        }
+    }
+    public void peek(){
+        if(isempty()){
+            System.out.println("Stack is undeflow");
+        }else{
+            System.out.print(stack[top]+" ");
+        }
+    }
+    public void traverse(){
+        if(isempty()){
+            System.out.println("It is empty");
+        }
+        for (int i =0; i <=top; i++) {
+            System.out.print(stack[i]+" ");
+        }
+    }
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+
+        int arr[]={1,2,3,4,5};
+        Stacks1 st=new Stacks1(arr.length);
+
+        for (int i = 0; i <arr.length ; i++) {
+            st.push(arr[i]);
+        }
+        st.traverse();
+        System.out.println("reverse the array");
+        for (int i = 0; i < arr.length; i++) {
+            st.peek();
+            st.pop();
+        }
+    }
+}
