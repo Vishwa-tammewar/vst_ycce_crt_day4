@@ -1,0 +1,199 @@
+//Reverse the queue using stack
+import java.util.Scanner;
+class stacks2 {
+    int top = -1;
+    final int CAPACITY;
+    int stack[];
+
+    stacks2(int size) {
+        top = -1;
+        CAPACITY = size;
+        stack = new int[CAPACITY];
+    }
+
+    public boolean isfull() {
+        if (top == CAPACITY - 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isempty() {
+        if (top == -1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void push(int data) {
+
+        if (isfull()) {
+            System.out.println("Stack overflow");
+        } else {
+            top++;
+            stack[top] = data;
+        }
+    }
+
+    public int pop() {
+        if (isempty()) {
+            System.out.println("Stack is underflow");
+            return -1;
+        } else {
+            int data=stack[top];
+            top--;
+            return data;
+        }
+    }
+
+    public void peek() {
+        if (isempty()) {
+            System.out.println("Stack is undeflow");
+        } else {
+            System.out.println(stack[top]);
+        }
+    }
+
+    public void traverse() {
+        if (isempty()) {
+            System.out.println("It is empty");
+        }
+        for (int i = top; i >= 0; i--) {
+            System.out.println(stack[i] + " ");
+        }
+    }
+}
+//Queue Implementation
+
+class queue{
+    int queue[],size,front,rear;
+    public queue(int n){
+        size=n;
+        queue=new int[size];
+        front=0;
+        rear=-1;
+    }
+    public boolean isfull(){
+        if(rear==size-1){
+            return true;
+        }else
+        {
+            return false;
+        }
+    }
+    public boolean isempty(){
+        if(rear==-1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public void insert(int data){
+        if(isfull()){
+            System.out.println("it is overflow");
+        }
+        else{
+            rear++;
+            queue[rear]=data;
+        }
+
+    }
+    public int delele(){
+        if(isempty()){
+            System.out.println("queue is underflow");
+            return -1;
+        }
+        else{
+            int data=queue[0];
+            for (int i = 1; i <=rear ; i++) {
+                queue[i-1]=queue[i];
+            }
+            rear--;
+            return data;
+        }
+
+
+    }
+    public void display(){
+        if(isempty()){
+            System.out.println("it is underflow");
+        }
+        else{
+            for (int i = 0; i <= rear; i++) {
+                System.out.print(queue[i]+" ");
+            }
+            System.out.println();
+        }
+    }
+    public int peek(){
+        if(isempty()){
+            System.out.println("Queue is underflow");
+        }
+        else{
+            System.out.println(front);
+        }
+        return 0;
+    }
+
+    public static void main(String[] args) {
+        int arr[]={1,2,3,4,5};
+        queue q=new queue(arr.length);
+        stacks2 s=new stacks2(arr.length);
+//        System.out.print("Queue: ");
+//        for (int i=0;i<arr.length;i++){
+//            q.insert(arr[i]);
+//        }
+//        q.display();
+//        for (int i=0;i<arr.length;i++){
+//            s.push(q.delele());
+//        }
+//        for (int i=0;i<arr.length;i++){
+//            q.insert(s.pop());
+//        }
+//        System.out.print("Reverse the Queue: ");
+//        q.display();
+
+//        Swapping
+        int arr1[]=new int[50];
+        int arr2[]=new int[50];
+        for (int i = 0; i <arr.length; i++) {
+            s.push(arr[i]);
+        }
+        for (int i = 0; i <arr.length; i++) {
+            arr1[i]=s.pop();
+        }
+        System.out.print("Before swap stack:");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr1[i]+" ");
+        }
+        System.out.println();
+//        Queue
+        for (int i = 0; i <arr.length; i++) {
+            q.insert(arr[i]);
+            arr2[i]=q.delele();
+        }
+        System.out.print("Before swap queue:");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr2[i]+" ");
+        }
+        System.out.println();
+        for (int i = 0; i < arr.length ; i++) {
+            int temp=arr1[i];
+            arr1[i]=arr2[i];
+            arr2[i]=temp;
+        }
+        System.out.print("After swap stack:");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr1[i]+" ");
+        }
+        System.out.println();
+        System.out.print("After swap queue:");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr2[i]+" ");
+        }
+        System.out.println();
+    }
+}
